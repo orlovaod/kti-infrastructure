@@ -7,12 +7,12 @@ services:
       - "80:80"
     volumes: 
       - ./conf:/etc/nginx/conf.d
-      - ./html:/usr/share/nginx/html 
+      - ./html:/usr/share/nginx/html
     depends_on:
       - flask
 
   flask:
-    image: "orlovaod/flask:1.0"
+    image: "orlova/flask:2.0"
     container_name: flask
     environment:
       - FLASK_DEBUG=True
@@ -34,3 +34,4 @@ services:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
